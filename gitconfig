@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Gil Tayar
+	email = gil@tayar.org 
+[alias]
+        st = status --short --branch
+        cam = commit -am
+        ls = !git --no-pager log --oneline --graph --decorate -n 20
+        amend = commit --amend -C HEAD
+[pull]
+        rebase = true

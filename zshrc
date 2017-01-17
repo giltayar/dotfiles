@@ -86,6 +86,8 @@ source $ZSH/oh-my-zsh.sh
 #####
 ##### My Stuff
 #####
+
+### NVM
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 autoload -U add-zsh-hook
@@ -107,9 +109,10 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+### DOCKER
 alias rmdocker='docker rm -fv `docker ps -a -q`'
-alias rmcinet='docker network rm `docker network ls | grep cicontainer | awk "{ print \\$1 }"`'
-alias npmprivate='npm config set registry http://repo.naturalint.com/repository/NI-NPM/'
 alias npmpublic='npm set registry https://registry.npmjs.org/'
-bindkey -v
+
+## AUTOJUMP
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
