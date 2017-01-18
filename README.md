@@ -62,3 +62,23 @@ brew install autojmp
 ```
 
 (The .zshrc included here already includes the necessary setup for nvm)
+
+### eslint
+
+```bash
+npm install -g eslint
+```
+
+### flow
+
+```bash
+npm install -g flow-bin
+```
+
+### Gitx
+
+A nice Git Gui
+
+```bash
+brew install Caskroom/cask/rowanj-gitx
+```

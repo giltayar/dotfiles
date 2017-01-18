@@ -116,3 +116,5 @@ alias npmpublic='npm set registry https://registry.npmjs.org/'
 ## AUTOJUMP
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+### NPM Aliases
+alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
