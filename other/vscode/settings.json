@@ -1,0 +1,33 @@
+{
+    "files.associations": {
+        "*.cfg": "python"
+    },
+    // Controls auto save of dirty files. Accepted values:  "off", "afterDelay", "onFocusChange" (editor loses focus), "onWindowChange" (window loses focus). If set to "afterDelay", you can configure the delay in "files.autoSaveDelay".
+    "files.autoSave": "onFocusChange",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true
+    },
+    // Controls if opened editors should show in tabs or not.
+    "workbench.editor.showTabs": false,    
+
+    // Customizes which terminal application to run on OS X.
+    "terminal.external.osxExec": "iTerm.app",
+    "javascript.validate.enable": true,
+    // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
+    "editor.tabSize": 2,
+    "editor.rulers": [120],
+    "files.trimTrailingWhitespace": true,
+    "vimStyle.enabled": false,
+    "eslint.enable": true,
+    "typescript.check.tscVersion": false,
+    "window.zoomLevel": 0,
+    "explorer.openEditors.visible": 5,
+    "markdown.styles": [
+        "https://cdn.rawgit.com/BigstickCarpet/5d31c053d0b1d52389eb2723f7550907/raw/88e4538c0fc46e39a97f332b43546f92762a6bb6/github-markdown.css",
+        "https://cdn.rawgit.com/Yukaii/vscode-markdown-github-css/master/github.css"
+    ]
+  }

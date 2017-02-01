@@ -1,0 +1,11 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+IFS="$(printf '\n\t')"   # (see https://www.dwheeler.com/essays/filenames-in-shell.html)
+VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
+
+# This crazy code, that is used instead of globbing is because of the space in the dirname
+for file in "${VSCODE_SETTINGS}/*.json"; do
+  cp $file other/vscode
+done
+cp -R "${VSCODE_SETTINGS}/snippets" other/vscode

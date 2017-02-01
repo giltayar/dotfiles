@@ -1,2 +1,0 @@
-#!/bin/bash
-rcup -x README.md -x install

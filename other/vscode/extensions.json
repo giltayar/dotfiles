@@ -1,0 +1,18 @@
+{
+    "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
+        "donjayamanne.python",
+        "eamodio.gitlens",
+        "flowtype.flow-for-vscode",
+        "formulahendry.code-runner",
+        "golf1052.code-sync",
+        "humao.rest-client",
+        "letrieu.expand-region",
+        "lucax88x.codeacejumper",
+        "qinjia.view-in-browser",
+        "tht13.html-preview-vscode"
+    ]
+}

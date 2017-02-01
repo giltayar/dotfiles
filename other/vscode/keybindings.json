@@ -1,0 +1,24 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+  { "key":"alt+right",       "command":"cursorWordStartRight",       "when":"editorTextFocus" },
+  { "key":"alt+shift+right", "command":"cursorWordStartRightSelect", "when":"editorTextFocus" },
+  {
+    "key": "ctrl+w","command": "expand_region", "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+w","command": "undo_expand_region", "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+r",
+    "command": "workbench.action.tasks.runTask",
+    "when": "editorTextFocus"
+  },
+  {
+      "key": "alt+enter",
+      "command": "extension.aceJump"
+  },{
+    "key": "cmd+e cmd+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation",
+    "when": "editorTextFocus"
+  }
+]

@@ -22,10 +22,20 @@ git clone git@github.com:giltayar/dotfiles.git ~/.dotfiles
 Then update the symlinks from the `.dotfiles` to your HOME dir:
 
 ```bash
-~/.dotfiles/install
+~/.dotfiles/install-dotfiles
 ```
 
-(this runs rcup and ignores some files that are not dotfiles)
+This runs rcup and ignores some files that are not dotfiles.
+It also installs other files that are not under rcup supervision.
+
+### Updating files that are not under rcup supervision
+
+```bash
+~/.dotfiles/update-dotfiles-here
+```
+
+This will copy dotfiles that are not symlinked and are in other locations on disk,
+to this directory.
 
 ## Nice things to install
 
