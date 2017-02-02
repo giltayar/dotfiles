@@ -12,7 +12,7 @@
         "**/*.pyc": true
     },
     // Controls if opened editors should show in tabs or not.
-    "workbench.editor.showTabs": false,    
+    "workbench.editor.showTabs": false,
 
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
@@ -29,5 +29,8 @@
     "markdown.styles": [
         "https://cdn.rawgit.com/BigstickCarpet/5d31c053d0b1d52389eb2723f7550907/raw/88e4538c0fc46e39a97f332b43546f92762a6bb6/github-markdown.css",
         "https://cdn.rawgit.com/Yukaii/vscode-markdown-github-css/master/github.css"
-    ]
+    ],
+    "window.newWindowDimensions": "maximized",
+    "window.openFoldersInNewWindow": "on",
+    "editor.formatOnPaste": true
   }
