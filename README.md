@@ -92,3 +92,11 @@ A nice Git Gui
 ```bash
 brew install Caskroom/cask/rowanj-gitx
 ```
+
+### tvsort
+
+A command line utility that sorts TV Shows to nice folders
+
+```bash
+npm install -g tvsort
+```
