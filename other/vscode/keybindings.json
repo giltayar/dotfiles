@@ -21,4 +21,7 @@
     "command": "editor.emmet.action.wrapWithAbbreviation",
     "when": "editorTextFocus"
   }
-]
+,{
+  "key": "shift+alt+n",
+  "command": "workbench.action.files.newFile"
+}]

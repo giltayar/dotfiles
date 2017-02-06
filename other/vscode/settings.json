@@ -32,5 +32,9 @@
     ],
     "window.newWindowDimensions": "maximized",
     "window.openFoldersInNewWindow": "on",
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "debug.inlineValues": true,
+    "[html]": {
+        "editor.formatOnPaste": false
+    }
   }
