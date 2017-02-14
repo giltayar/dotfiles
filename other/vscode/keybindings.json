@@ -22,6 +22,10 @@
     "when": "editorTextFocus"
   }
 ,{
+  "key": "shift+cmd+.",
+  "command": "eslint.executeAutofix",
+  "when": "editorTextFocus"
+},{
   "key": "shift+alt+n",
   "command": "workbench.action.files.newFile"
 }]
