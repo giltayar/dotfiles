@@ -38,10 +38,5 @@
         "editor.formatOnPaste": false
     },
     "gitlens.blame.annotation.activeLine": "off",
-    "gitlens.codeLens.location": "document",
-    "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      "html"
-    ]
+    "gitlens.codeLens.location": "document"
   }
