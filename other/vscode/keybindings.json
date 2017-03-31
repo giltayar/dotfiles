@@ -22,10 +22,13 @@
     "when": "editorTextFocus"
   }
 ,{
+  "key": "cmd+8",
+  "command": "workbench.action.toggleMaximizedPanel"
+},{
   "key": "shift+cmd+.",
   "command": "eslint.executeAutofix",
   "when": "editorTextFocus"
 },{
   "key": "shift+alt+n",
-  "command": "workbench.action.files.newFile"
+  "command": "explorer.newFile"
 }]

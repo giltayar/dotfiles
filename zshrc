@@ -87,9 +87,13 @@ source $ZSH/oh-my-zsh.sh
 ##### My Stuff
 #####
 
+### NPM
+alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
+
 ### NVM
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
 autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -116,5 +120,5 @@ alias npmpublic='npm set registry https://registry.npmjs.org/'
 ## AUTOJUMP
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-### NPM Aliases
-alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

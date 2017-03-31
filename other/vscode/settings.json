@@ -20,8 +20,7 @@
     // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
     "editor.tabSize": 2,
     "editor.rulers": [120],
-    "files.trimTrailingWhitespace": true,
-    "vimStyle.enabled": false,
+    "zfiles.trimTrailingWhitespace": true,
     "eslint.enable": true,
     "typescript.check.tscVersion": false,
     "window.zoomLevel": 0,
@@ -32,6 +31,7 @@
     ],
     "window.newWindowDimensions": "maximized",
     "window.openFoldersInNewWindow": "on",
+    "window.reopenFolders": "all",
     "editor.formatOnPaste": true,
     "debug.inlineValues": true,
     "[html]": {
