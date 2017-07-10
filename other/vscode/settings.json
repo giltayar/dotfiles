@@ -20,7 +20,7 @@
     // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
     "editor.tabSize": 2,
     "editor.rulers": [120],
-    "zfiles.trimTrailingWhitespace": true,
+    "files.trimTrailingWhitespace": true,
     "eslint.enable": true,
     "typescript.check.tscVersion": false,
     "window.zoomLevel": 0,
@@ -37,6 +37,11 @@
     "[html]": {
         "editor.formatOnPaste": false
     },
-    "gitlens.blame.annotation.activeLine": "off",
-    "gitlens.codeLens.location": "document"
-  }
+    "workbench.iconTheme": "vscode-great-icons",
+    "editor.minimap.enabled": false,
+    "gitlens.blame.line.enabled": false,
+    "gitlens.codeLens.locations": [
+        "document"
+    ],
+    "git.enableSmartCommit": true
+}
