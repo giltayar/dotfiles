@@ -1,6 +1,9 @@
 Host github.com
     IdentityFile ~/.ssh/id_rsa_github
 
+Host giltab.com
+    IdentityFile ~/.ssh/id_rsa_gitlab
+
 Host *.zooz
     IdentityFile ~/.ssh/gil-dcos-cluster.pem
     User core

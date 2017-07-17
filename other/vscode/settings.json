@@ -43,5 +43,6 @@
     "gitlens.codeLens.locations": [
         "document"
     ],
-    "git.enableSmartCommit": true
+    "git.enableSmartCommit": true,
+    "java.errors.incompleteClasspath.severity": "ignore"
 }
