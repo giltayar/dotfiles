@@ -31,8 +31,6 @@
     ],
     "window.newWindowDimensions": "maximized",
     "window.openFoldersInNewWindow": "on",
-    "window.reopenFolders": "all",
-    "editor.formatOnPaste": true,
     "debug.inlineValues": true,
     "[html]": {
         "editor.formatOnPaste": false
@@ -44,5 +42,9 @@
         "document"
     ],
     "git.enableSmartCommit": true,
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "window.restoreWindows": "all",
+    "window.restoreFullscreen": true
 }

@@ -8,4 +8,6 @@
         ls = !git --no-pager log --oneline --graph --decorate -n 20
         amend = commit --amend -C HEAD
 [pull]
-        rebase = true
+	rebase = true
+[branch]
+	autosetuprebase = always

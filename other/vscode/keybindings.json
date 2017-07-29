@@ -31,4 +31,15 @@
 },{
   "key": "shift+alt+n",
   "command": "explorer.newFile"
-}]
+},
+{
+  "key": "ctrl+shift+space",
+  "command": "editor.action.triggerParameterHints",
+  "when": "editorHasSignatureHelpProvider && editorTextFocus"
+},
+{
+  "key": "shift+cmd+space",
+  "command": "-editor.action.triggerParameterHints",
+  "when": "editorHasSignatureHelpProvider && editorTextFocus"
+}
+]
