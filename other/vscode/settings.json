@@ -22,7 +22,6 @@
     "editor.rulers": [120],
     "files.trimTrailingWhitespace": true,
     "eslint.enable": true,
-    "typescript.check.tscVersion": false,
     "window.zoomLevel": 0,
     "explorer.openEditors.visible": 5,
     "markdown.styles": [
@@ -46,5 +45,6 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Visual Studio Dark",
     "window.restoreWindows": "all",
-    "window.restoreFullscreen": true
+    "window.restoreFullscreen": true,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

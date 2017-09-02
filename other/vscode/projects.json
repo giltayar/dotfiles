@@ -1,0 +1,32 @@
+[
+	{
+		"name": "webcollage",
+		"rootPath": "$home/code/webcollage",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "bildit",
+		"rootPath": "$home/code/bildit",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "webcollage-ansible",
+		"rootPath": "$home/code/ansible",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "bildit-test-repo",
+		"rootPath": "$home/code/test-repo",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "ci-build",
+		"rootPath": "$home/code/ci-build",
+		"paths": [],
+		"group": ""
+	}
+]
