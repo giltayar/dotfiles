@@ -55,6 +55,8 @@ brew install nvm
 nvm install node
 ```
 
+(The .zshrc included here already includes the necessary setup for nvm)
+
 ### jq
 
 JSON Query
@@ -63,15 +65,13 @@ JSON Query
 brew install jq
 ```
 
-### autojmp
+### autojump
 
 cd wherever, then `j <shortname>` to jump to any directory you have been
 
 ```bash
-brew install autojmp
+brew install autojump
 ```
-
-(The .zshrc included here already includes the necessary setup for nvm)
 
 ### eslint
 
