@@ -1,0 +1,8 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+IFS="$(printf '\n\t')"   # (see https://www.dwheeler.com/essays/filenames-in-shell.html)
+VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
+
+cp other/vscode/*.json "$VSCODE_SETTINGS"
+cp other/vscode/snippets/* $VSCODE_SETTINGS/snippets
