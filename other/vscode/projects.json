@@ -19,13 +19,19 @@
 	},
 	{
 		"name": "bildit-test-repo",
-		"rootPath": "$home/code/test-repo",
+		"rootPath": "$home/code/bildit-test-repo",
 		"paths": [],
 		"group": ""
 	},
 	{
 		"name": "ci-build",
 		"rootPath": "$home/code/ci-build",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "rendering-grid",
+		"rootPath": "$home/code/rendering-grid",
 		"paths": [],
 		"group": ""
 	}

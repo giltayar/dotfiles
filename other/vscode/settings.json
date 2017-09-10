@@ -41,10 +41,13 @@
         "document"
     ],
     "git.enableSmartCommit": true,
-    "java.errors.incompleteClasspath.severity": "ignore",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Visual Studio Dark",
     "window.restoreWindows": "all",
     "window.restoreFullscreen": true,
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.vagrant": true
+    }
 }

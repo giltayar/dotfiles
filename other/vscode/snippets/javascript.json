@@ -13,37 +13,10 @@
 		"description": "Log output to console"
 	}
 */
-	"Async function": {
-		"prefix": "async",
-		"body": [
-			"Promise.coroutine(function*($1) {",
-			"  $2",
-			"})"
-		],
-		"description": "Creates async function using bluebird"
-	},
-	"Bluebird import": {
-		"prefix": "bluebird",
-		"body": [
-			"const Promise = require('bluebird')"
-		],
-		"description": "Import bluebird"
-	},
-	"Flow and Strict header": {
-		"prefix": "flowstrict",
-		"body": [
-			"'use strict'",
-			"//@flow",
-			"",
-			"$1"
-		],
-		"description": "add header to file with flow and strict"
-	},
 	"Strict header": {
 		"prefix": "strict",
 		"body": [
 			"'use strict'",
-			"",
 			"$1"
 		],
 		"description": "add header to file with flow and strict"
@@ -51,12 +24,16 @@
 	"Mocha header": {
 		"prefix": "mocha",
 		"body": [
+			"'use strict'",
 			"const {describe, it} = require('mocha')",
 			"const {expect} = require('chai')",
 			"",
 			"describe('$1', function() {",
-			"	$2",
-			"})"
+			"  it('$2', async () => {",
+			"    expect(4).to.equal(2)",
+			"  })",
+			"})",
+			""
 		],
 		"description": "Main mocha imports"
 	},
