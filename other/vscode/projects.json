@@ -34,5 +34,23 @@
 		"rootPath": "$home/code/rendering-grid",
 		"paths": [],
 		"group": ""
+	},
+	{
+		"name": "Eyes.Selenium.JavaScript",
+		"rootPath": "$home/code/Eyes.Selenium.JavaScript",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "frontend-testing",
+		"rootPath": "$home/code/frontend-testing",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "playing",
+		"rootPath": "$home/code/playing",
+		"paths": [],
+		"group": ""
 	}
 ]

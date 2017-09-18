@@ -23,7 +23,7 @@
     "files.trimTrailingWhitespace": true,
     "eslint.enable": true,
     "window.zoomLevel": 0,
-    "explorer.openEditors.visible": 5,
+    "explorer.openEditors.visible": 0,
     "markdown.styles": [
         "https://cdn.rawgit.com/BigstickCarpet/5d31c053d0b1d52389eb2723f7550907/raw/88e4538c0fc46e39a97f332b43546f92762a6bb6/github-markdown.css",
         "https://cdn.rawgit.com/Yukaii/vscode-markdown-github-css/master/github.css"
@@ -49,5 +49,7 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/.vagrant": true
-    }
+    },
+    "java.referencesCodeLens.enabled": false,
+    "explorer.autoReveal": false
 }
