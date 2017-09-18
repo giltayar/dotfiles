@@ -121,5 +121,7 @@ alias sshdockervm='docker run -it --privileged --pid=host debian nsenter -t 1 -m
 ## AUTOJUMP
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+## JAVA
+export JAVA_HOME=/Library/Java/Home
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
