@@ -45,5 +45,9 @@
 {
   "key": "ctrl+shift+e",
   "command": "editor.debug.action.selectionToRepl"
+},
+{
+  "key": "cmd+k r",
+  "command": "workbench.files.action.showActiveFileInExplorer"
 }
 ]

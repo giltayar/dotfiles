@@ -37,9 +37,6 @@
     "workbench.iconTheme": "vscode-great-icons",
     "editor.minimap.enabled": false,
     "gitlens.blame.line.enabled": false,
-    "gitlens.codeLens.locations": [
-        "document"
-    ],
     "git.enableSmartCommit": true,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Visual Studio Dark",
@@ -51,5 +48,9 @@
         "**/.vagrant": true
     },
     "java.referencesCodeLens.enabled": false,
-    "explorer.autoReveal": false
+    "explorer.autoReveal": false,
+    "editor.snippetSuggestions": "top",
+    "gitlens.gitExplorer.includeWorkingTree": false,
+    "projectManager.sortList": "Recent",
+    "gitlens.codeLens.enabled": false
 }
