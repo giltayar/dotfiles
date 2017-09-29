@@ -114,7 +114,8 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 ### DOCKER
-alias rmdocker='docker rm -fv `docker ps -a -q`'
+alias rmdocker='docker rm -fv `docker ps -a -q` ; docker network prune -f'
+alias prdocker='docker system prune --volumes -f'
 alias npmpublic='npm set registry https://registry.npmjs.org/'
 alias sshdockervm='docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh'
 
