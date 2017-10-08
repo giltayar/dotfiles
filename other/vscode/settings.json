@@ -12,7 +12,7 @@
         "**/*.pyc": true
     },
     // Controls if opened editors should show in tabs or not.
-    "workbench.editor.showTabs": false,
+    "workbench.editor.showTabs": true,
 
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
@@ -39,7 +39,6 @@
     "gitlens.blame.line.enabled": false,
     "git.enableSmartCommit": true,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Visual Studio Dark",
     "window.restoreWindows": "all",
     "window.restoreFullscreen": true,
     "search.exclude": {
