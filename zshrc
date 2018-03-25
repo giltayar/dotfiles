@@ -126,3 +126,19 @@ alias sshdockervm='docker run -it --privileged --pid=host debian nsenter -t 1 -m
 export JAVA_HOME=/Library/Java/Home
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## Kubernetes
+alias kc=kubectl
+alias kcn='kubectl config set-context `kubectl config current-context` --namespace'
+alias kcd='kubectl config use-context'
+alias klog="kubectl logs"
+alias kcurl='kc run curl -it --image byrnedo/alpine-curl --restart Never --rm --'
+alias kcg='kubectl get -o yaml'
+alias kcgd='kubectl get -o yaml deploy'
+alias kcgp='kubectl get -o yaml pod'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi

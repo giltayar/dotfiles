@@ -3,7 +3,3 @@ Host github.com
 
 Host gitlab.com
     IdentityFile ~/.ssh/id_rsa_gitlab
-
-Host *.zooz
-    IdentityFile ~/.ssh/gil-dcos-cluster.pem
-    User core

@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "*.cfg": "python"
+        "*.tpl": "yaml"
     },
     // Controls auto save of dirty files. Accepted values:  "off", "afterDelay", "onFocusChange" (editor loses focus), "onWindowChange" (window loses focus). If set to "afterDelay", you can configure the delay in "files.autoSaveDelay".
     "files.autoSave": "onFocusChange",
@@ -12,7 +12,7 @@
         "**/*.pyc": true
     },
     // Controls if opened editors should show in tabs or not.
-    "workbench.editor.showTabs": true,
+    "workbench.editor.showTabs": false,
 
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
@@ -23,7 +23,7 @@
     "files.trimTrailingWhitespace": true,
     "eslint.enable": true,
     "window.zoomLevel": 0,
-    "explorer.openEditors.visible": 0,
+    "explorer.openEditors.visible": 7,
     "markdown.styles": [
         "https://cdn.rawgit.com/BigstickCarpet/5d31c053d0b1d52389eb2723f7550907/raw/88e4538c0fc46e39a97f332b43546f92762a6bb6/github-markdown.css",
         "https://cdn.rawgit.com/Yukaii/vscode-markdown-github-css/master/github.css"
@@ -48,8 +48,37 @@
     },
     "java.referencesCodeLens.enabled": false,
     "explorer.autoReveal": false,
-    "editor.snippetSuggestions": "top",
+    "editor.snippetSuggestions": "bottom",
     "gitlens.gitExplorer.includeWorkingTree": false,
     "projectManager.sortList": "Recent",
-    "gitlens.codeLens.enabled": false
+    "search.useIgnoreFilesByDefault": true,
+    "search.useIgnoreFiles": true,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.panel.location": "bottom",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": true,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": true,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": false
+    },
+    "extensions.ignoreRecommendations": false,
+    "code-runner.executorMap": {
+        "csharp": "cd $dir && scriptcs '$fileName'",
+    },
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.hovers.currentLine.enabled": false,
+    "gitlens.recentChanges.highlight.locations": [
+        "overview",
+        "gutter"
+    ],
+    "gitlens.statusBar.enabled": false,
+    "gitlens.currentLine.format": "",
+    "gitlens.keymap": "alternate"
 }

@@ -40,5 +40,17 @@
 		"rootPath": "$home/code/playing",
 		"paths": [],
 		"group": ""
+	},
+	{
+		"name": "node-esm-tea",
+		"rootPath": "$home/code/node-esm-tea",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "rendering-grid-workspace",
+		"rootPath": "$home/code/rendering-grid",
+		"paths": [],
+		"group": ""
 	}
 ]
