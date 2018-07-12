@@ -142,3 +142,8 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Build
+function btp {
+  npm update && npm run build && npm t && npm publish && git add . && gcmsg $1 && git pull && git push
+}

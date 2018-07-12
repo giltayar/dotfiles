@@ -11,3 +11,5 @@
 	rebase = true
 [branch]
 	autosetuprebase = always
+[rebase]
+	autoStash = true
