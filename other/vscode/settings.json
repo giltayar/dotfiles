@@ -39,9 +39,9 @@
     "window.restoreWindows": "all",
     "window.restoreFullscreen": true,
     "search.exclude": {
-        "**/node_modules": true,
+        "**/.vagrant": true,
         "**/bower_components": true,
-        "**/.vagrant": true
+        "**/node_modules": true
     },
     "java.referencesCodeLens.enabled": false,
     "explorer.autoReveal": false,
@@ -84,5 +84,11 @@
     "workbench.sideBar.location": "right",
     "workbench.editor.limit.value": 8,
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.editor.limit.enabled": true
+    "workbench.editor.limit.enabled": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "local-history.daysLimit": 2,
+    "local-history.path": "~/.vscode-local-history",
+    "local-history.absolute": true,
+    "local-history.saveDelay": 120
 }
