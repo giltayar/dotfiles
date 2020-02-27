@@ -11,8 +11,6 @@
         "**/.DS_Store": true,
         "**/*.pyc": true
     },
-    // Controls if opened editors should show in tabs or not.
-    "workbench.editor.showTabs": false,
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
     "javascript.validate.enable": true,
@@ -80,6 +78,11 @@
     "gitlens.statusBar.enabled": false,
     "gitlens.currentLine.format": "",
     "gitlens.keymap": "alternate",
-    "editor.fontFamily": "Jira Code,Menlo, Monaco, 'Courier New', monospace",
-    "workbench.sideBar.location": "right"
+    "editor.fontFamily": "JetBrains Mono,Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "editor.fontWeight": "300",
+    "workbench.sideBar.location": "right",
+    "workbench.editor.limit.value": 8,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.limit.enabled": true
 }
