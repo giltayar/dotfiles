@@ -13,13 +13,12 @@
     },
     // Controls if opened editors should show in tabs or not.
     "workbench.editor.showTabs": false,
-
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
     "javascript.validate.enable": true,
     // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
     "editor.tabSize": 2,
-    "editor.rulers": [120],
+    "editor.rulers": [100],
     "files.trimTrailingWhitespace": true,
     "eslint.enable": true,
     "window.zoomLevel": 0,
@@ -80,5 +79,7 @@
     ],
     "gitlens.statusBar.enabled": false,
     "gitlens.currentLine.format": "",
-    "gitlens.keymap": "alternate"
+    "gitlens.keymap": "alternate",
+    "editor.fontFamily": "Jira Code,Menlo, Monaco, 'Courier New', monospace",
+    "workbench.sideBar.location": "right"
 }

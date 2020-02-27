@@ -118,6 +118,9 @@ alias rmdocker='docker rm -fv `docker ps -a -q` ; docker network prune -f'
 alias prdocker='docker system prune --volumes -f'
 alias npmpublic='npm set registry https://registry.npmjs.org/'
 alias sshdockervm='docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh'
+function dlogs {
+  docker logs `docker ps -a | grep $1 | awk '{print $1}'`
+}
 
 ## AUTOJUMP
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -136,6 +139,7 @@ alias kcurl='kc run curl -it --image byrnedo/alpine-curl --restart Never --rm --
 alias kcg='kubectl get -o yaml'
 alias kcgd='kubectl get -o yaml deploy'
 alias kcgp='kubectl get -o yaml pod'
+alias kwd='kubectl config current-context'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
@@ -143,7 +147,21 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Build
-function btp {
-  npm update && npm run build && npm t && npm publish && git add . && gcmsg $1 && git pull && git push
-}
+
+# Python
+eval "$(pyenv init -)"
+
+# Applitools
+. ~/.eyes/secrets.sh
+. ~/.rendering-grid/dev.sh
+export APPLITOOLS_CONCURRENCY=10000
+
+# Building
+alias qt='DEBUG=applitools:* npm run test:mocha -- -b'
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh
