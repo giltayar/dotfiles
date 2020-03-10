@@ -1,12 +1,12 @@
 // Place your key bindings in this file to overwrite the defaults
 [
 {
-  "key": "cmd+8",
-  "command": "workbench.action.toggleMaximizedPanel"
-},
-{
   "key": "shift+cmd+.",
   "command": "eslint.executeAutofix",
   "when": "editorTextFocus"
+},
+{
+  "key": "shift+cmd+j",
+  "command": "workbench.action.toggleMaximizedPanel"
 }
 ]
