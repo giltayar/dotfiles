@@ -37,17 +37,19 @@
 		],
 		"description": "Main mocha imports"
 	},
+	"require": {
+		"prefix": "require",
+		"body": "const {$2} = require('$1')"
+	},
 	"promisify Line": {
 		"prefix": "promisify",
-		"body":
-			"const {promisify: p} = require('util')"
-		],
+		"body": "const {promisify: p} = require('util')",
 		"description": "Main mocha imports"
 	},
 	"Console.log": {
 		"prefix": "console",
 		"body": [
-			"console.log(`@@@GIL $1`)"
+			"console.log(`*********** $1`, {$2}) //@@@GIL"
 		],
 		"description": "Add a console.log debug statement"
 	},

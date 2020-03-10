@@ -45,7 +45,7 @@
     },
     "java.referencesCodeLens.enabled": false,
     "explorer.autoReveal": false,
-    "editor.snippetSuggestions": "bottom",
+    "editor.snippetSuggestions": "top",
     "gitlens.gitExplorer.includeWorkingTree": false,
     "projectManager.sortList": "Recent",
     "search.useIgnoreFilesByDefault": true,
@@ -90,5 +90,11 @@
     "local-history.daysLimit": 2,
     "local-history.path": "~/.vscode-local-history",
     "local-history.absolute": true,
-    "local-history.saveDelay": 120
+    "local-history.saveDelay": 120,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "javascript.preferences.quoteStyle": "single",
+    "[typescript]": {
+        "editor.defaultFormatter": "remimarsal.prettier-now"
+    },
+    "timeline.showView": true
 }
