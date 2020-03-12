@@ -96,5 +96,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "remimarsal.prettier-now"
     },
-    "timeline.showView": true
+    "timeline.showView": true,
+    "explorer.confirmDelete": false
 }

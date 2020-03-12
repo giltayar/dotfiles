@@ -23,5 +23,9 @@
   "key": "shift+cmd+space",
   "command": "-editor.action.triggerParameterHints",
   "when": "editorHasSignatureHelpProvider && editorTextFocus"
+},
+{
+  "key": "ctrl+shift+e",
+  "command": "editor.debug.action.selectionToRepl"
 }
 ]
