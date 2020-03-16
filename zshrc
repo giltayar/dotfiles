@@ -158,6 +158,7 @@ export APPLITOOLS_CONCURRENCY=10000
 
 # Building
 alias qt='DEBUG=applitools:* npm run test:mocha -- -b'
+export BTPD_DEPLOYMENT_PACKAGES_BASE_DIR=~/code/mono/deployments
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`

@@ -79,6 +79,7 @@
     "gitlens.currentLine.format": "",
     "gitlens.keymap": "alternate",
     "editor.fontFamily": "JetBrains Mono,Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
     "editor.fontSize": 13,
     "editor.fontWeight": "300",
     "workbench.sideBar.location": "right",
