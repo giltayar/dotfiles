@@ -1,0 +1,9 @@
+{
+	"console.log": {
+		"prefix": "console",
+		"body": [
+			"console.log(`*********** $1`, {$2}) //@@@GIL"
+		],
+		"description": "Add a console.log debug statement"
+	},
+}

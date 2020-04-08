@@ -156,6 +156,9 @@ eval "$(pyenv init -)"
 . ~/.rendering-grid/dev.sh
 export APPLITOOLS_CONCURRENCY=10000
 
+# Bilt
+alias bqt="DEBUG=bilt:* npm run test:mocha -- -b"
+
 # Building
 alias qt='DEBUG=applitools:* npm run test:mocha -- -b'
 export BTPD_DEPLOYMENT_PACKAGES_BASE_DIR=~/code/mono/deployments

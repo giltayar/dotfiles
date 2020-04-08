@@ -13,7 +13,6 @@
     },
     // Customizes which terminal application to run on OS X.
     "terminal.external.osxExec": "iTerm.app",
-    "javascript.validate.enable": true,
     // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
     "editor.tabSize": 2,
     "editor.rulers": [100],
@@ -98,5 +97,16 @@
         "editor.defaultFormatter": "remimarsal.prettier-now"
     },
     "timeline.showView": true,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.semanticHighlighting.enabled": false,
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.implicitProjectConfig.checkJs": true,
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.views.defaultItemLimit": 30,
+    "gitlens.views.repositories.includeWorkingTree": false,
+    "gitlens.views.showRelativeDateMarkers": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "remimarsal.prettier-now"
+    },
+    "workbench.editor.tabSizing": "shrink"
 }

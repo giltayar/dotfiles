@@ -46,7 +46,7 @@
 		"body": "const {promisify: p} = require('util')",
 		"description": "Main mocha imports"
 	},
-	"Console.log": {
+	"console.log": {
 		"prefix": "console",
 		"body": [
 			"console.log(`*********** $1`, {$2}) //@@@GIL"
