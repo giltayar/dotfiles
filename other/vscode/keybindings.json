@@ -26,5 +26,9 @@
 {
   "key": "ctrl+shift+e",
   "command": "editor.debug.action.selectionToRepl"
+},
+{
+  "key": "ctrl+cmd+t",
+  "command": "workbench.action.terminal.focusNext"
 }
 ]

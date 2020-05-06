@@ -34,9 +34,8 @@
     "editor.minimap.enabled": false,
     "gitlens.blame.line.enabled": false,
     "git.enableSmartCommit": true,
-    "workbench.startupEditor": "newUntitledFile",
+    "workbench.startupEditor": "none",
     "window.restoreWindows": "all",
-    "window.restoreFullscreen": true,
     "search.exclude": {
         "**/.vagrant": true,
         "**/bower_components": true,
@@ -100,7 +99,6 @@
     "explorer.confirmDelete": false,
     "editor.semanticHighlighting.enabled": false,
     "typescript.preferences.quoteStyle": "single",
-    "javascript.implicitProjectConfig.checkJs": true,
     "gitlens.defaultDateStyle": "absolute",
     "gitlens.views.defaultItemLimit": 30,
     "gitlens.views.repositories.includeWorkingTree": false,
