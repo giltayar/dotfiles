@@ -97,7 +97,6 @@
     },
     "timeline.showView": true,
     "explorer.confirmDelete": false,
-    "editor.semanticHighlighting.enabled": false,
     "typescript.preferences.quoteStyle": "single",
     "gitlens.defaultDateStyle": "absolute",
     "gitlens.views.defaultItemLimit": 30,
@@ -106,5 +105,8 @@
     "[javascript]": {
         "editor.defaultFormatter": "remimarsal.prettier-now"
     },
-    "workbench.editor.tabSizing": "shrink"
+    "workbench.editor.tabSizing": "shrink",
+    "java.semanticHighlighting.enabled": true,
+    "gitlens.views.repositories.files.layout": "tree",
+    "githubIssues.useBranchForIssues": "off"
 }

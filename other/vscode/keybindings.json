@@ -30,5 +30,25 @@
 {
   "key": "ctrl+cmd+t",
   "command": "workbench.action.terminal.focusNext"
+},
+{
+  "key": "alt+-",
+  "command": "workbench.action.editor.nextChange",
+  "when": "editorTextFocus"
+},
+{
+  "key": "alt+f5",
+  "command": "-workbench.action.editor.nextChange",
+  "when": "editorTextFocus"
+},
+{
+  "key": "shift+alt+-",
+  "command": "workbench.action.editor.previousChange",
+  "when": "editorTextFocus"
+},
+{
+  "key": "shift+alt+f5",
+  "command": "-workbench.action.editor.previousChange",
+  "when": "editorTextFocus"
 }
 ]
