@@ -4,38 +4,21 @@ My dotfiles for Mac
 
 ## Installation
 
-First install `brew` (install instructions [here](http://brew.sh/)).
+Just `git clone` this repository anywhere.
 
-Then install `rcm` (manual [here](http://thoughtbot.github.io/rcm/rcm.7.html)):
+To sync the existig settings on your computer to this repository, execute
 
-```bash
-brew tap thoughtbot/formulae
-brew install rcm
+```sh
+./update-dotfiles-repository
 ```
 
-Then clone this repo into your HOME directory, into `.dotfiles`:
+And then `git commit ... && git push`
 
-```bash
-git clone git@github.com:giltayar/dotfiles.git ~/.dotfiles
+To sync your computer from this repository, execute
+
+```sh
+./update-computer
 ```
-
-Then update the symlinks from the `.dotfiles` to your HOME dir:
-
-```bash
-~/.dotfiles/install-dotfiles
-```
-
-This runs rcup and ignores some files that are not dotfiles.
-It also installs other files that are not under rcup supervision.
-
-### Updating files that are not under rcup supervision
-
-```bash
-~/.dotfiles/update-dotfiles-here
-```
-
-This will copy dotfiles that are not symlinked and are in other locations on disk,
-to this directory.
 
 ## Nice things to install
 
@@ -71,32 +54,4 @@ cd wherever, then `j <shortname>` to jump to any directory you have been
 
 ```bash
 brew install autojump
-```
-
-### eslint
-
-```bash
-npm install -g eslint
-```
-
-### flow
-
-```bash
-npm install -g flow-bin
-```
-
-### Gitx
-
-A nice Git Gui
-
-```bash
-brew install Caskroom/cask/rowanj-gitx
-```
-
-### tvsort
-
-A command line utility that sorts TV Shows to nice folders
-
-```bash
-npm install -g tvsort
 ```

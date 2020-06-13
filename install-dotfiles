@@ -1,7 +1,0 @@
-#!/bin/bash
-rcup -x README.md -x install -x other -x update-from-vscode
-
-cd "$(dirname "$0")"
-
-VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
-cp -R other/vscode/* "$VSCODE_SETTINGS"

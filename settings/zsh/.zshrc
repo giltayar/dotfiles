@@ -147,10 +147,6 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-
-# Python
-eval "$(pyenv init -)"
-
 # Applitools
 . ~/.eyes/secrets.sh
 . ~/.rendering-grid/dev.sh
