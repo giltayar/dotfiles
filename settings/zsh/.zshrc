@@ -87,6 +87,10 @@ source $ZSH/oh-my-zsh.sh
 ##### My Stuff
 #####
 
+### Keyboard stuff
+bindkey "^[^[[D" backward-word
+bindkey "^[^[[C" forward-word
+
 ### NPM
 alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
 

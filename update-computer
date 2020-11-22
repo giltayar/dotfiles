@@ -4,13 +4,6 @@ cd "$(dirname "$0")"
 IFS="$(printf '\n\t')"   # (see https://www.dwheeler.com/essays/filenames-in-shell.html)
 
 #
-# VSCODE
-#
-VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
-cp settings/vscode/*.json "$VSCODE_SETTINGS"
-cp settings/vscode/snippets/* $VSCODE_SETTINGS/snippets
-
-#
 # ZSH
 #
 cp settings/zsh/.zshrc ~/.zshrc

@@ -5,15 +5,6 @@ IFS="$(printf '\n\t')"   # (see https://www.dwheeler.com/essays/filenames-in-she
 VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
 
 #
-# VSCODE
-#
-# This crazy code, that is used instead of globbing is because of the space in the dirname
-for file in "${VSCODE_SETTINGS}/*.json"; do
-  cp $file settings/vscode
-done
-cp -R "${VSCODE_SETTINGS}/snippets" settings/vscode
-
-#
 # ZSH
 #
 cp ~/.zshrc settings/zsh/.zshrc
