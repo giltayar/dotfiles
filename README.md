@@ -48,10 +48,26 @@ JSON Query
 brew install jq
 ```
 
+### bat
+
+Command Line File Viewer alternative to `cat`
+
+```bash
+brew install bat
+```
+
 ### autojump
 
 cd wherever, then `j <shortname>` to jump to any directory you have been
 
 ```bash
 brew install autojump
+```
+
+### AltTab
+
+Cmd+Tab like you're on Windows!
+
+```bash
+brew cask install alt-tab
 ```
