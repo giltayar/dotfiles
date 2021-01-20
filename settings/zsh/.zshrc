@@ -119,11 +119,18 @@ load-nvmrc
 
 ### DOCKER
 alias rmdocker='docker rm -fv `docker ps -a -q` ; docker network prune -f'
-alias prdocker='docker system prune --volumes -f'
 alias npmpublic='npm set registry https://registry.npmjs.org/'
-alias sshdockervm='docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh'
+
 function dlogs {
   docker logs `docker ps -a | grep $1 | awk '{print $1}'`
+}
+
+rmkubens() {
+	if [ `kubectl config current-context` != "docker-desktop" ]; then
+		echo "cannot use if not in docker-desktop"
+  else
+    kubectl get ns | tail -n +2 | awk '{print $1}' | grep -v -E '^(kube-|default)' | xargs -P 3 kubectl delete namespace
+  fi
 }
 
 ## AUTOJUMP
@@ -145,23 +152,23 @@ alias kcgd='kubectl get -o yaml deploy'
 alias kcgp='kubectl get -o yaml pod'
 alias kwd='kubectl config current-context'
 
+source <(kubectl completion zsh)
+
+function ksecret() {
+  kubectl get secret secrets -o jsonpath="{.data.$1}" | base64 -d
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Applitools
-. ~/.eyes/secrets.sh
-. ~/.rendering-grid/dev.sh
-export APPLITOOLS_CONCURRENCY=10000
-
-# Bilt
-alias bqt="DEBUG=bilt:* npm run test:mocha -- -b"
-
 # Building
-alias qt='DEBUG=applitools:* npm run test:mocha -- -b'
-export BTPD_DEPLOYMENT_PACKAGES_BASE_DIR=~/code/mono/deployments
+function qt() {
+  npm run mocha -- --bail --color $*
+}
+alias bqt="DEBUG=bilt:* npm run test:mocha -- -b --color"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
