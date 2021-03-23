@@ -94,52 +94,13 @@ bindkey "^[^[[C" forward-word
 ### NPM
 alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
 
-### NVM
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
-
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" != "N/A" ] && [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm install
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 ### DOCKER
-alias rmdocker='docker rm -fv `docker ps -a -q` ; docker network prune -f'
+alias rmdocker='docker rm -fv `docker ps -a | grep -v "k8s_" | cut -d" " -f1 | tail -n +2`; docker network prune -f'
 alias npmpublic='npm set registry https://registry.npmjs.org/'
 
 function dlogs {
   docker logs `docker ps -a | grep $1 | awk '{print $1}'`
 }
-
-rmkubens() {
-	if [ `kubectl config current-context` != "docker-desktop" ]; then
-		echo "cannot use if not in docker-desktop"
-  else
-    kubectl get ns | tail -n +2 | awk '{print $1}' | grep -v -E '^(kube-|default)' | xargs -P 3 kubectl delete namespace
-  fi
-}
-
-## AUTOJUMP
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-## JAVA
-export JAVA_HOME=/Library/Java/Home
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 ## Kubernetes
 alias kc=kubectl
@@ -154,19 +115,39 @@ alias kwd='kubectl config current-context'
 
 source <(kubectl completion zsh)
 
+rmkubens() {
+	if [ `kubectl config current-context` != "docker-desktop" ]; then
+		echo "cannot use if not in docker-desktop"
+  else
+    kubectl get ns | tail -n +2 | awk '{print $1}' | grep -v -E '^(kube-|default)' | xargs -P 3 kubectl delete namespace
+  fi
+}
+
 function ksecret() {
   kubectl get secret secrets -o jsonpath="{.data.$1}" | base64 -d
 }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
+## AUTOJUMP
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# The next line enables shell command completion for gcloud.
+## JAVA
+export JAVA_HOME=/Library/Java/Home
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# PYTHON
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# GCloud
+
+if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Building
 function qt() {
-  npm run mocha -- --bail --color $*
+  npm run mocha -- --bail $*
 }
 alias bqt="DEBUG=bilt:* npm run test:mocha -- -b --color"
 
@@ -176,3 +157,16 @@ alias bqt="DEBUG=bilt:* npm run test:mocha -- -b --color"
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Node.js
+alias noder=node-prototype-repl
+
+# Applitools
+export APPLITOOLS_API_KEY=sKd06ZhE1fcWnUFqVU1T102tNvvi0NfFzA2yvZaboIwvM110
+
+# Secrets
+. ~/.dev/secrets.sh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
