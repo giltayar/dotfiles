@@ -164,9 +164,14 @@ export PATH="$HOME/.poetry/bin:$PATH"
 alias noder=node-prototype-repl
 
 # Applitools
-export APPLITOOLS_API_KEY=sKd06ZhE1fcWnUFqVU1T102tNvvi0NfFzA2yvZaboIwvM110
+export APPLITOOLS_API_KEY=nqfMtvfdJDrAYvYt9LM6JqP5zehV2QEJZUTfF104105SR1084110
 
 # Secrets
 . ~/.dev/secrets.sh
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Volta
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$VOLTA_HOME/bin:$PATH"
+
+# FNM
+eval "$(fnm env)"
