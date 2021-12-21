@@ -136,9 +136,10 @@ export JAVA_HOME=/Library/Java/Home
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # PYTHON
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init --path)"
+#   eval "$(pyenv init -)"
+# fi
 
 # GCloud
 
@@ -175,3 +176,10 @@ export APPLITOOLS_API_KEY=nqfMtvfdJDrAYvYt9LM6JqP5zehV2QEJZUTfF104105SR1084110
 
 # FNM
 eval "$(fnm env)"
+
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# fnm
+export PATH=/Users/giltayar/.fnm:$PATH
+eval "`fnm env`"
