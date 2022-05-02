@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -136,10 +136,9 @@ export JAVA_HOME=/Library/Java/Home
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # PYTHON
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init --path)"
-#   eval "$(pyenv init -)"
-# fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # GCloud
 
@@ -164,22 +163,85 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # Node.js
 alias noder=node-prototype-repl
 
-# Applitools
-export APPLITOOLS_API_KEY=nqfMtvfdJDrAYvYt9LM6JqP5zehV2QEJZUTfF104105SR1084110
-
 # Secrets
 . ~/.dev/secrets.sh
 
-# Volta
-# export VOLTA_HOME="$HOME/.volta"
-# export PATH="$VOLTA_HOME/bin:$PATH"
+### Roundforest Package Shortcuts
 
-# FNM
-eval "$(fnm env)"
+pclient() {
+  dir=`pwd`;
+  dir=${dir/-client/};
+  dir=${dir/-deploy/};
 
-# Brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo "${dir}-client"
+}
+cclient() {
+  cd `pclient`
+}
+lclient() {
+  npm link `pclient`
+}
 
-# fnm
-export PATH=/Users/giltayar/.fnm:$PATH
-eval "`fnm env`"
+pbase() {
+  dir=`pwd`;
+  dir=${dir/-client/};
+  dir=${dir/-deploy/};
+
+  echo "${dir}"
+}
+cbase() {
+  cd `pbase`
+}
+
+pdeploy() {
+  dir=`pwd`;
+  dir=${dir/-client/};
+  dir=${dir/-deploy/};
+
+  echo "${dir}-deploy"
+}
+
+cdeploy() {
+  cd `pdeploy`
+}
+
+ppage() {
+  dir=`pwd`;
+  dir=${dir/-client/};
+  dir=${dir/-deploy/};
+  dirnoserver=${dir/-server/};
+
+  echo "${dir}-page"
+}
+cpage() {
+  cd `ppage`
+}
+
+pserver() {
+  dir=`pwd`;
+  dir=${dir/-client/};
+  dir=${dir/-deploy/};
+  dirnoserver=${dir/-page-server/};
+  dirnoserver=${dir/-page/};
+
+  echo "${dir}-page-server"
+}
+cserver() {
+  cd `pserver`
+}
+
+### Building
+
+function qt() {
+  npm run mocha -- --bail $*
+}
+
+### Applitools
+
+export APPLITOOLS_CONCURRENT_RENDERS_PER_TEST=100
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/giltayar/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltayar/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/giltayar/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
