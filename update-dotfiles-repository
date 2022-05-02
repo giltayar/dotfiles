@@ -8,6 +8,7 @@ VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
 # ZSH
 #
 cp ~/.zshrc settings/zsh/.zshrc
+cp ~/.zprofile settings/zsh/.zprofile
 
 #
 # GIT
