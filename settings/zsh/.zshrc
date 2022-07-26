@@ -145,6 +145,8 @@ fi
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 # Building
 function qt() {
   npm run mocha -- --bail $*
@@ -241,7 +243,9 @@ function qt() {
 export APPLITOOLS_CONCURRENT_RENDERS_PER_TEST=100
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/giltayar/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltayar/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/giltayar/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
+
+export USE_GITHUB_CODE_REVIEW=true
