@@ -151,7 +151,7 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 function qt() {
   npm run mocha -- --bail $*
 }
-alias bqt="DEBUG=bilt:* npm run test:mocha -- -b --color"
+alias qnm="npm run test:typescript && npm run test:eslint -- --fix"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -248,4 +248,4 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltay
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-export USE_GITHUB_CODE_REVIEW=true
+export BROWSER=chrome
