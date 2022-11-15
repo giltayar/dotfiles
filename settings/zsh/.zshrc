@@ -151,6 +151,8 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 function qt() {
   npm run mocha -- --bail $*
 }
+alias nt="npm test --"
+alias nj="npm run jest --"
 alias qnm="npm run test:typescript && npm run test:eslint -- --fix"
 
 # tabtab source for serverless package

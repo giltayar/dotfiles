@@ -19,3 +19,10 @@ cp ~/.gitconfig settings/git/.gitconfig
 # SSH
 #
 cp ~/.ssh/config settings/ssh/config
+
+#
+# Karabiner
+#
+mkdir -p settings/karabiner
+cp ~/.config/karabiner/karabiner.json settings/karabiner/karabiner.json
+cp -R ~/.config/karabiner/assets settings/karabiner
