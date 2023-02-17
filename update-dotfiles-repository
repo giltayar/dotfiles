@@ -2,7 +2,6 @@
 cd "$(dirname "$0")"
 
 IFS="$(printf '\n\t')"   # (see https://www.dwheeler.com/essays/filenames-in-shell.html)
-VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User"
 
 #
 # ZSH
@@ -23,6 +22,8 @@ cp ~/.ssh/config settings/ssh/config
 #
 # Karabiner
 #
-mkdir -p settings/karabiner
-cp ~/.config/karabiner/karabiner.json settings/karabiner/karabiner.json
-cp -R ~/.config/karabiner/assets settings/karabiner
+if [[ "$OSTYPE" == "darwin" ]]; then
+  mkdir -p settings/karabiner
+  cp ~/.config/karabiner/karabiner.json settings/karabiner/karabiner.json
+  cp -R ~/.config/karabiner/assets settings/karabiner
+fi

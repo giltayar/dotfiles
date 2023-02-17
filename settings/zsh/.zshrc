@@ -2,7 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/giltayar/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -51,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(git yarn npm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,12 +92,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
 
-### NPM
-alias listnpmpublished='file_name=$(npm pack) && tar -ztf $file_name && rm $file_name'
-
 ### DOCKER
 alias rmdocker='docker rm -fv `docker ps -a | grep -v "k8s_" | cut -d" " -f1 | tail -n +2`; docker network prune -f'
-alias npmpublic='npm set registry https://registry.npmjs.org/'
 
 function dlogs {
   docker logs `docker ps -a | grep $1 | awk '{print $1}'`
@@ -113,7 +110,9 @@ alias kcgd='kubectl get -o yaml deploy'
 alias kcgp='kubectl get -o yaml pod'
 alias kwd='kubectl config current-context'
 
-source <(kubectl completion zsh)
+if command -v kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 rmkubens() {
 	if [ `kubectl config current-context` != "docker-desktop" ]; then
@@ -155,84 +154,9 @@ alias nt="npm test --"
 alias nj="npm run jest --"
 alias qnm="npm run test:typescript && npm run test:eslint -- --fix"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/giltayar/code/rendering-grid/packages/screenshot-service/node_modules/tabtab/.completions/sls.zsh
-
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# Node.js
-alias noder=node-prototype-repl
-
 # Secrets
 . ~/.dev/secrets.sh
 
-### Roundforest Package Shortcuts
-
-pclient() {
-  dir=`pwd`;
-  dir=${dir/-client/};
-  dir=${dir/-deploy/};
-
-  echo "${dir}-client"
-}
-cclient() {
-  cd `pclient`
-}
-lclient() {
-  npm link `pclient`
-}
-
-pbase() {
-  dir=`pwd`;
-  dir=${dir/-client/};
-  dir=${dir/-deploy/};
-
-  echo "${dir}"
-}
-cbase() {
-  cd `pbase`
-}
-
-pdeploy() {
-  dir=`pwd`;
-  dir=${dir/-client/};
-  dir=${dir/-deploy/};
-
-  echo "${dir}-deploy"
-}
-
-cdeploy() {
-  cd `pdeploy`
-}
-
-ppage() {
-  dir=`pwd`;
-  dir=${dir/-client/};
-  dir=${dir/-deploy/};
-  dirnoserver=${dir/-server/};
-
-  echo "${dir}-page"
-}
-cpage() {
-  cd `ppage`
-}
-
-pserver() {
-  dir=`pwd`;
-  dir=${dir/-client/};
-  dir=${dir/-deploy/};
-  dirnoserver=${dir/-page-server/};
-  dirnoserver=${dir/-page/};
-
-  echo "${dir}-page-server"
-}
-cserver() {
-  cd `pserver`
-}
 
 ### Building
 
@@ -251,3 +175,6 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltay
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
 export BROWSER=chrome
+
+export VISUAL=vim
+export EDITOR=vim

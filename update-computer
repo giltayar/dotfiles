@@ -22,5 +22,8 @@ cp settings/ssh/config ~/.ssh/config
 #
 # Karabiner
 #
-cp settings/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
-cp -R settings/karabiner/assets ~/.config/karabiner
+if [[ "$OSTYPE" == "darwin" ]]; then
+  cp settings/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
+  cp -R settings/karabiner/assets ~/.config/karabiner
+fi
+
