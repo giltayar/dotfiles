@@ -30,7 +30,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm)
+plugins=(git yarn npm autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -174,7 +174,41 @@ if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltay
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-export BROWSER=chrome
-
 export VISUAL=vim
 export EDITOR=vim
+
+# This enables Chrome to run in WSL
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+sudo /etc/init.d/dbus start &> /dev/null
+export BROWSER="google-chrome --no-sandbox --disable-gpu"
+
+# Trident Kusto
+pwrun() {
+  yarn playwright test --config=test/integration/$1 ${@:2}
+}
+
+viterun() {
+  bash -c "cd test/integration/$1 && yarn vite serve . --host 127.0.0.1 --port 7777 --config=../vite.config.ts"
+}
+
+alias viteclean="rm -rf ./test/integration/**/.vite"
+
+cleanall() {
+  rm -rf .parcel-cache || true
+  rm -rf .yarn/cache/.gitignore || true
+  rm -rf .yarn/install-state.gz || true
+  rm -rf node_modules || true
+  rm -rf packages/**/node_modules || true
+  rm -rf packages/**/.turbo || true
+  rm -rf packages/**/dist || true
+  rm -rf packages/**/tsconfig.tsbuildinfo || true
+  rm -rf tridentkustoextension/**/node_modules || true
+  rm -rf tridentkustoextension/test/integration/**/.vite || true
+}
+
+gitcleanbuild() {
+  git clean -xdf && yarn && yarn build-packages && cd tridentkustoextension && yarn && cd ..
+}
+
+alias yarnbuild="yarn && yarn build-packages"
+

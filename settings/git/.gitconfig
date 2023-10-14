@@ -23,6 +23,7 @@
 	process = git-lfs filter-process
 [core]
 	excludesfile = /Users/giltayar/.gitignore_global
+	pager = less --quit-if-one-screen
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
