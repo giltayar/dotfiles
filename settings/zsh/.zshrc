@@ -30,7 +30,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -144,7 +144,7 @@ fi
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/giltayar/google-cloud-sdk/completion.zsh.inc'; fi
 
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export USE_GKE_GCLOUD_AUTH_PLUGIN=Trueyarn
 
 # Building
 function qt() {
@@ -177,10 +177,11 @@ if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 export VISUAL=vim
 export EDITOR=vim
 
-# This enables Chrome to run in WSL
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+# This enables GUI apps to run in WSL
+export DISPLAY=$(ip route list default | awk '{print $3}'):0
+export LIBGL_ALWAYS_INDIRECT=1
 sudo /etc/init.d/dbus start &> /dev/null
-export BROWSER="google-chrome --no-sandbox --disable-gpu"
+# export BROWSER="google-chrome --no-sandbox --disable-gpu"
 
 # Trident Kusto
 pwrun() {
@@ -191,24 +192,24 @@ viterun() {
   bash -c "cd test/integration/$1 && yarn vite serve . --host 127.0.0.1 --port 7777 --config=../vite.config.ts"
 }
 
-alias viteclean="rm -rf ./test/integration/**/.vite"
-
-cleanall() {
-  rm -rf .parcel-cache || true
-  rm -rf .yarn/cache/.gitignore || true
-  rm -rf .yarn/install-state.gz || true
-  rm -rf node_modules || true
-  rm -rf packages/**/node_modules || true
-  rm -rf packages/**/.turbo || true
-  rm -rf packages/**/dist || true
-  rm -rf packages/**/tsconfig.tsbuildinfo || true
-  rm -rf tridentkustoextension/**/node_modules || true
-  rm -rf tridentkustoextension/test/integration/**/.vite || true
-}
+alias viteclean="rm -rf ./test/integration/**/.vite; rm -rf .vite"
 
 gitcleanbuild() {
-  git clean -xdf && yarn && yarn build-packages && cd tridentkustoextension && yarn && cd ..
+  dir_to_return_to=$PWD
+  current_dir=$(basename "$PWD")
+  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
+    cd ..
+    current_dir=$(basename "$PWD")
+  done
+  git clean -xdf && yarn && (yarn run -T build-packages:old --force || (rm -rf .parcel-cache && yarn run -T build-packages:old --force))
+  cd $dir_to_return_to
 }
 
+alias create-pat="yarn create-pat --output ~/.dev/secrets.sh"
+
 alias yarnbuild="yarn && yarn build-packages"
+
+# FNM
+export PATH="/home/giltayar/.local/share/fnm:$PATH"
+eval "$(fnm env)"
 
