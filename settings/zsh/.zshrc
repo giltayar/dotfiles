@@ -184,14 +184,10 @@ sudo /etc/init.d/dbus start &> /dev/null
 # export BROWSER="google-chrome --no-sandbox --disable-gpu"
 
 # Trident Kusto
-pwrun() {
-  yarn playwright test --config=test/integration/$1 ${@:2}
-}
-
-viterun() {
-  bash -c "cd test/integration/$1 && yarn vite serve . --host 127.0.0.1 --port 7777 --config=../vite.config.ts"
-}
-
+alias pwrun="yarn playwright test --config=test/integration --grep-invert @a11y"
+alias viterun="yarn vite serve test/integration --port 7777"
+alias e2e="yarn playwright test --config=test/e2e/playwright.config.ts"
+alias yrt="yarn run -T"
 alias viteclean="rm -rf ./test/integration/**/.vite; rm -rf .vite"
 
 gitcleanbuild() {
@@ -201,15 +197,46 @@ gitcleanbuild() {
     cd ..
     current_dir=$(basename "$PWD")
   done
-  git clean -xdf && yarn && (yarn run -T build-packages:old --force || (rm -rf .parcel-cache && yarn run -T build-packages:old --force))
+
+  git clean -xdf && yarn && (yarn run -T build-packages)
+
+  cd $dir_to_return_to
+}
+
+prepush() {
+dir_to_return_to=$PWD
+  current_dir=$(basename "$PWD")
+  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
+    cd ..
+    current_dir=$(basename "$PWD")
+  done
+
+  yarn lint &
+  yarn typecheck &
+  yarn loc &
+  yarn dedupe --check &
+  yarn prettier --check . &
+  yarn constraints &
+  wait
+
   cd $dir_to_return_to
 }
 
 alias create-pat="yarn create-pat --output ~/.dev/secrets.sh"
 
-alias yarnbuild="yarn && yarn build-packages"
+cdt() {
+  dir_to_return_to=$PWD
+  current_dir=$(basename "$PWD")
+  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
+    cd ..
+    current_dir=$(basename "$PWD")
+  done
+
+  cd tridentkustoextension
+}
+
+alias ylintype="yarn run -T lint & yarn run -T typecheck &; wait"
 
 # FNM
 export PATH="/home/giltayar/.local/share/fnm:$PATH"
 eval "$(fnm env)"
-
