@@ -1,9 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Gil Tayar
-	email = gil@tayar.org
+	email = giltayar@microsoft.com
 [alias]
         st = status --short --branch
+	sw = switch
+	sd = switch --detach
         cam = commit -am
         ls = !git --no-pager log --oneline --graph --decorate -n 20
         amend = commit --amend -C HEAD
@@ -36,3 +38,5 @@
 	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[rerere]
+	enabled = true

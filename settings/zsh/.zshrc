@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm autojump)
+plugins=(git yarn npm autojump nx-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,9 +126,6 @@ function ksecret() {
   kubectl get secret secrets -o jsonpath="{.data.$1}" | base64 -d
 }
 
-## AUTOJUMP
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
 ## JAVA
 export JAVA_HOME=/Library/Java/Home
 
@@ -146,27 +143,9 @@ if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/U
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=Trueyarn
 
-# Building
-function qt() {
-  npm run mocha -- --bail $*
-}
-alias nt="npm test --"
-alias nj="npm run jest --"
-alias qnm="npm run test:typescript && npm run test:eslint -- --fix"
-
 # Secrets
 . ~/.dev/secrets.sh
 
-
-### Building
-
-function qt() {
-  npm run mocha -- --bail $*
-}
-
-### Applitools
-
-export APPLITOOLS_CONCURRENT_RENDERS_PER_TEST=100
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
@@ -184,11 +163,35 @@ sudo /etc/init.d/dbus start &> /dev/null
 # export BROWSER="google-chrome --no-sandbox --disable-gpu"
 
 # Trident Kusto
-alias pwrun="yarn playwright test --config=test/integration --grep-invert @a11y"
-alias viterun="yarn vite serve test/integration --port 7777"
-alias e2e="yarn playwright test --config=test/e2e/playwright.config.ts"
 alias yrt="yarn run -T"
+alias yti="yarn test:integration"
+alias ytito="yarn test:integration --trace=on"
+alias ytis="yarn test:integration:serve"
+alias ytie="yarn test:integration:e2e"
+alias yte="yarn test:e2e"
+alias yteto="yarn test:e2e --trace=on"
+alias ybd="time yarn build:dev:nx"
+alias ybdw="yarn build:dev:watch:nx"
+alias yybd="yarn && time yarn build:dev:nx"
+alias ysd="yarn start:vite:nx"
+alias yvc="yarn vite:clean"
 alias viteclean="rm -rf ./test/integration/**/.vite; rm -rf .vite"
+
+# Git
+alias gpomr="git pull origin master"
+alias gsmr="git switch master"
+alias grmh="git reset --mixed HEAD~"
+alias gswd="git switch --detach"
+
+# PNPM
+alias p="pnpm"
+alias pi="pnpm install"
+alias pb="pnpm build"
+alias pib="pnpm install && pnpm run --if-present build"
+alias pibt="pnpm install && pnpm run --if-present build && pnpm run --if-present test"
+alias pt="pnpm test"
+alias pst="pnpm start"
+alias ptx="pnpm test:x"
 
 gitcleanbuild() {
   dir_to_return_to=$PWD
@@ -198,34 +201,27 @@ gitcleanbuild() {
     current_dir=$(basename "$PWD")
   done
 
-  git clean -xdf && yarn && (yarn run -T build-packages)
+  time (git clean -xdf && yarn && (yarn run -T build-packages))
 
   cd $dir_to_return_to
 }
 
-prepush() {
-dir_to_return_to=$PWD
+gitcleanx() {
+  dir_to_return_to=$PWD
   current_dir=$(basename "$PWD")
   while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
     cd ..
     current_dir=$(basename "$PWD")
   done
 
-  yarn lint &
-  yarn typecheck &
-  yarn loc &
-  yarn dedupe --check &
-  yarn prettier --check . &
-  yarn constraints &
-  wait
+  time (git clean -xdf && yarn && cd tridentkustoextension && yarn build-deps:nx)
 
   cd $dir_to_return_to
 }
 
-alias create-pat="yarn create-pat --output ~/.dev/secrets.sh"
+alias create-pat="yarn run -T create-pat --output ~/.dev/secrets.sh"
 
 cdt() {
-  dir_to_return_to=$PWD
   current_dir=$(basename "$PWD")
   while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
     cd ..
@@ -235,8 +231,26 @@ cdt() {
   cd tridentkustoextension
 }
 
-alias ylintype="yarn run -T lint & yarn run -T typecheck &; wait"
+cdk() {
+  current_dir=$(basename "$PWD")
+  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
+    cd ..
+    current_dir=$(basename "$PWD")
+  done
+
+  cd kustoweb
+}
+
+alias ylintype="time (yarn run lint & yarn run typecheck &; wait)"
 
 # FNM
 export PATH="/home/giltayar/.local/share/fnm:$PATH"
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# pnpm installation
+export PNPM_HOME="/home/giltayar/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
