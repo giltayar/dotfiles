@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git yarn npm autojump nx-completion)
+plugins=(git yarn npm autojump docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,6 +94,8 @@ bindkey "^[^[[C" forward-word
 
 ### DOCKER
 alias rmdocker='docker rm -fv `docker ps -a | grep -v "k8s_" | cut -d" " -f1 | tail -n +2`; docker network prune -f'
+alias dc='docker compose'
+alias dcu='docker compose up -d'
 
 function dlogs {
   docker logs `docker ps -a | grep $1 | awk '{print $1}'`
@@ -143,9 +145,6 @@ if [ -f '/Users/giltayar/google-cloud-sdk/completion.zsh.inc' ]; then source '/U
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=Trueyarn
 
-# Secrets
-. ~/.dev/secrets.sh
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/giltayar/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giltayar/google-cloud-sdk/path.zsh.inc'; fi
@@ -162,26 +161,38 @@ export LIBGL_ALWAYS_INDIRECT=1
 sudo /etc/init.d/dbus start &> /dev/null
 # export BROWSER="google-chrome --no-sandbox --disable-gpu"
 
+# FNM
+export PATH="/home/giltayar/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd --resolve-engines --shell zsh)"
+
+
+# Secrets
+. ~/.dev/secrets.sh
+
 # Trident Kusto
 alias yrt="yarn run -T"
 alias yti="yarn test:integration"
 alias ytito="yarn test:integration --trace=on"
-alias ytis="yarn test:integration:serve"
+alias ytis="yarn test:integration:serve:nx"
 alias ytie="yarn test:integration:e2e"
 alias yte="yarn test:e2e"
 alias yteto="yarn test:e2e --trace=on"
-alias ybd="time yarn build:dev:nx"
-alias ybdw="yarn build:dev:watch:nx"
-alias yybd="yarn && time yarn build:dev:nx"
-alias ysd="yarn start:vite:nx"
-alias yvc="yarn vite:clean"
-alias viteclean="rm -rf ./test/integration/**/.vite; rm -rf .vite"
+alias ybd="time yarn build:dev"
+alias ybdw="yarn build:dev:watch"
+alias ybtw="yarn build-typecheck:watch"
+alias yybd="yarn && cdt && time yarn build:dev"
+alias ysd="yarn start:dev"
+alias ysdw="yarn start:dev:watch"
+alias ysdc="yarn start:dev:clean"
 
 # Git
 alias gpomr="git pull origin master"
-alias gsmr="git switch master"
-alias grmh="git reset --mixed HEAD~"
+alias gswmr="git switch master"
 alias gswd="git switch --detach"
+alias gsw-="git switch -"
+alias griomr="git rebase -i origin/master"
+alias gwip="git add -A :/ && git commit -m 'wip' --no-verify"
+alias gwipundo="git reset --mixed HEAD~"
 
 # PNPM
 alias p="pnpm"
@@ -189,68 +200,80 @@ alias pi="pnpm install"
 alias pb="pnpm build"
 alias pib="pnpm install && pnpm run --if-present build"
 alias pibt="pnpm install && pnpm run --if-present build && pnpm run --if-present test"
+alias pbt="pnpm run --if-present build && pnpm run --if-present test"
 alias pt="pnpm test"
+alias ptt="pnpm test:typescript"
+alias pte="pnpm test:eslint"
+alias ptte="ptt && pte &; wait"
+alias ptn="pnpm test:node"
+alias ptp="pnpm test:playwright"
+alias ptpto="pnpm test:playwright --trace=on"
 alias pst="pnpm start"
-alias ptx="pnpm test:x"
+alias pvp="pnpm version patch"
+alias pvmn="pnpm version minor"
+alias pvmj="pnpm version major"
 
-gitcleanbuild() {
-  dir_to_return_to=$PWD
-  current_dir=$(basename "$PWD")
-  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
-    cd ..
-    current_dir=$(basename "$PWD")
-  done
-
-  time (git clean -xdf && yarn && (yarn run -T build-packages))
-
-  cd $dir_to_return_to
-}
-
-gitcleanx() {
-  dir_to_return_to=$PWD
-  current_dir=$(basename "$PWD")
-  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
-    cd ..
-    current_dir=$(basename "$PWD")
-  done
-
-  time (git clean -xdf && yarn && cd tridentkustoextension && yarn build-deps:nx)
-
-  cd $dir_to_return_to
-}
-
-alias create-pat="yarn run -T create-pat --output ~/.dev/secrets.sh"
-
-cdt() {
-  current_dir=$(basename "$PWD")
-  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
-    cd ..
-    current_dir=$(basename "$PWD")
-  done
-
-  cd tridentkustoextension
-}
-
-cdk() {
-  current_dir=$(basename "$PWD")
-  while [ "$current_dir" != "Azure-Kusto-WebUX" ]; do
-    cd ..
-    current_dir=$(basename "$PWD")
-  done
-
-  cd kustoweb
-}
-
-alias ylintype="time (yarn run lint & yarn run typecheck &; wait)"
-
-# FNM
-export PATH="/home/giltayar/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd --shell zsh)"
-
-# pnpm installation
 export PNPM_HOME="/home/giltayar/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
+
+# misc
+alias ezsh="exec zsh"
+
+# Mono
+monopublish() (
+  if [ -z "$1" ]; then
+    echo "Usage: monopublish <commit message>"
+    return 1
+  fi
+
+  set -e
+
+  export CI=1
+
+  pnpm install
+  pnpm --if-present build
+  [[ -v NO_TESTS ]] || pnpm --if-present test
+  pnpm publish --no-git-checks
+  git add .
+  git commit -m "$1"
+  git push
+)
+
+alias mnp="time monopublish"
+alias mns="pnpm self-update && pnpm update --latest"
+
+# AZ
+alias azl="az login --output none --use-device-code --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47"
+
+alias create-pat="yarn run -T create-pat --output ~/.dev/secrets.sh"
+
+cdr() {
+  current_dir=$(basename "$PWD")
+  while [ ! -d ".git" ]; do
+    cd ..
+    current_dir=$(basename "$PWD")
+  done
+}
+
+cdt() {
+  cdr
+  cd tridentkustoextension
+}
+
+cdp() {
+  cdr
+  cd packages/$1
+}
+
+cdk() {
+  cdr
+  cd kustoweb
+}
+
+export E2E_WITH_CERTIFICATES=1
+
+alias ylintype="time (yarn run lint & yarn run typecheck &; wait)"
+
