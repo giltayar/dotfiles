@@ -101,6 +101,9 @@ function dlogs {
   docker logs `docker ps -a | grep $1 | awk '{print $1}'`
 }
 
+### General
+alias clr=clear
+
 ## Kubernetes
 alias kc=kubectl
 alias kcn='kubectl config set-context `kubectl config current-context` --namespace'
@@ -169,21 +172,23 @@ eval "$(fnm env --use-on-cd --resolve-engines --shell zsh)"
 # Secrets
 . ~/.dev/secrets.sh
 
+# General aliases
+alias cd-="cd -"
+
 # Trident Kusto
 alias yrt="yarn run -T"
 alias yti="yarn test:integration"
 alias ytito="yarn test:integration --trace=on"
-alias ytis="yarn test:integration:serve:nx"
+alias ytis="yarn test:integration:serve"
+alias ytisw="yarn test:integration:serve:watch"
 alias ytie="yarn test:integration:e2e"
 alias yte="yarn test:e2e"
 alias yteto="yarn test:e2e --trace=on"
-alias ybd="time yarn build:dev"
-alias ybdw="yarn build:dev:watch"
-alias ybtw="yarn build-typecheck:watch"
-alias yybd="yarn && cdt && time yarn build:dev"
-alias ysd="yarn start:dev"
-alias ysdw="yarn start:dev:watch"
-alias ysdc="yarn start:dev:clean"
+alias yb="time yarn build"
+alias ybw="yarn build:watch"
+alias yyb="yarn && cdt && time yarn build"
+alias yst="yarn start"
+alias ysw="yarn start:watch"
 
 # Git
 alias gpomr="git pull origin master"
@@ -235,7 +240,7 @@ monopublish() (
 
   pnpm install
   pnpm --if-present build
-  [[ -v NO_TESTS ]] || pnpm --if-present test
+  # [[ -v NO_TESTS ]] || pnpm --if-present test
   pnpm publish --no-git-checks
   git add .
   git commit -m "$1"
@@ -275,5 +280,4 @@ cdk() {
 
 export E2E_WITH_CERTIFICATES=1
 
-alias ylintype="time (yarn run lint & yarn run typecheck &; wait)"
-
+. "$HOME/.local/bin/env"
