@@ -159,13 +159,15 @@ export VISUAL=vim
 export EDITOR=vim
 
 # This enables GUI apps to run in WSL
-export DISPLAY=$(ip route list default | awk '{print $3}'):0
-export LIBGL_ALWAYS_INDIRECT=1
-sudo /etc/init.d/dbus start &> /dev/null
-# export BROWSER="google-chrome --no-sandbox --disable-gpu"
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  export DISPLAY=$(ip route list default | awk '{print $3}'):0
+  export LIBGL_ALWAYS_INDIRECT=1
+  sudo /etc/init.d/dbus start &> /dev/null
+  # export BROWSER="google-chrome --no-sandbox --disable-gpu"
+fi
 
 # FNM
-export PATH="/home/giltayar/.local/share/fnm:$PATH"
+export PATH="/Users/giltayar/.local/share/fnm:$PATH"
 eval "$(fnm env --use-on-cd --resolve-engines --shell zsh)"
 
 
@@ -174,6 +176,17 @@ eval "$(fnm env --use-on-cd --resolve-engines --shell zsh)"
 
 # General aliases
 alias cd-="cd -"
+
+alias ezsh="exec zsh"
+
+kill-port() {
+  if [ -z "$1" ]; then
+    echo "Usage: kill-port <port>"
+    return 1
+  fi
+
+  lsof -ti tcp:$1 | xargs kill -9
+}
 
 # Trident Kusto
 alias yrt="yarn run -T"
@@ -218,14 +231,11 @@ alias pvp="pnpm version patch"
 alias pvmn="pnpm version minor"
 alias pvmj="pnpm version major"
 
-export PNPM_HOME="/home/giltayar/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# misc
-alias ezsh="exec zsh"
+# export PNPM_HOME="/home/giltayar/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
 
 # Mono
 monopublish() (
@@ -240,24 +250,28 @@ monopublish() (
 
   pnpm install
   pnpm --if-present build
-  # [[ -v NO_TESTS ]] || pnpm --if-present test
-  pnpm publish --no-git-checks
+  [[ -v NO_TESTS ]] || CI=1 pnpm --if-present test
+  pnpm publish --no-git-checks # --tag legacy-$(jq -r '.version' package.json)
   git add .
   git commit -m "$1"
   git push
 )
 
 alias mnp="time monopublish"
-alias mns="pnpm self-update && pnpm update --latest"
+alias mns="pnpm self-update && pnpm update --latest -i"
 
 # AZ
-alias azl="az login --output none --use-device-code --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47"
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  alias azl="az login --output none --use-device-code --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47"
+else
+  alias azl="az login --output none --tenant 72f988bf-86f1-41af-91ab-2d7cd011db47"
+fi
 
 alias create-pat="yarn run -T create-pat --output ~/.dev/secrets.sh"
 
 cdr() {
   current_dir=$(basename "$PWD")
-  while [ ! -d ".git" ]; do
+  while [ ! -e ".git" ]; do
     cd ..
     current_dir=$(basename "$PWD")
   done
@@ -278,6 +292,18 @@ cdk() {
   cd kustoweb
 }
 
-export E2E_WITH_CERTIFICATES=1
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  . "$HOME/.local/bin/env"
+fi
 
-. "$HOME/.local/bin/env"
+# pnpm
+export PNPM_HOME="/Users/giltayar/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Support for WSR investigation
+export KUSTO_SERVICE_URI=https://kuskushead.westeurope.kusto.windows.net
+export KUSTO_DATABASE=kuskus
